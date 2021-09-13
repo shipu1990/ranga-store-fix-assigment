@@ -47,6 +47,8 @@ body {
 .product-image {
   width: 150px;
   height: 150px;
+  margin: auto;
+  padding-top: 10px;
 }
 .cart {
   width: 350px;
