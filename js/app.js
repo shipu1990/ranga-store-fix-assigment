@@ -17,17 +17,50 @@ const showProducts = (products) => {
       <div>
     <img class="product-image" src=${image}></img>
       </div>
-      <h3>${product.title}</h3>
-      <p>Category: ${product.category}</p>
-      <p>Rate: ${product.rating.rate}</p>
-      <p>Count:${product.rating.count}</p>
+      <h3 class="product-title">${product.title}</h3>
+      <p class="common-para">Category: ${product.category}</p>
+      <p class="common-para">Rate: ${product.rating.rate}</p>
+      <p class="common-para">Count: ${product.rating.count}</p>
       <h2>Price: $ ${product.price}</h2>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
+      <button id="details-btn" onclick="productDetails(${product.id})" class="btn btn-danger">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
 };
+
+// Single Product Function
+
+const productDetails = (id) =>{
+  const url = `https://fakestoreapi.com/products/${id}`;
+  fetch(url)
+  .then(res => res.json())
+  .then(data => showSinglePro(data))
+}
+
+// Show Single Product Details
+const showSinglePro = data =>{
+  //console.log(data);
+  const singleContainer = document.getElementById('detailContainer');
+  singleContainer.innerText = '';
+  const div = document.createElement("div");
+  div.classList.add("product");
+  div.innerHTML = `<div class="single-product">
+    <div>
+  <img class="product-image" src=${data.image}></img>
+    </div>
+    <h3 class="product-title">${data.title}</h3>
+    <p class="common-para">Category: ${data.category}</p>
+    <p class="common-para">Rate: ${data.rating.rate}</p>
+    <p class="common-para">Count: ${data.rating.count}</p>
+    <h2>Price: $ ${data.price}</h2>
+    <button onclick="addToCart(${data.id},${data.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
+    `;
+    singleContainer.appendChild(div);
+
+}
+
+// Add to Cart Section
 let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
