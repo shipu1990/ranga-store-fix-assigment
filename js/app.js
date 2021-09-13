@@ -21,7 +21,7 @@ const showProducts = (products) => {
       <p class="common-para">Category: ${product.category}</p>
       <p class="common-para">Rate: ${product.rating.rate}</p>
       <p class="common-para">Count: ${product.rating.count}</p>
-      <h2>Price: $ ${product.price}</h2>
+      <h4>Price: $ ${product.price}</h4>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
       <button id="details-btn" onclick="productDetails(${product.id})" class="btn btn-danger">Details</button></div>
       `;
@@ -38,22 +38,20 @@ const productDetails = (id) =>{
   .then(data => showSinglePro(data))
 }
 
-// Show Single Product Details
+// Show Single Product 
 const showSinglePro = data =>{
   //console.log(data);
   const singleContainer = document.getElementById('detailContainer');
   singleContainer.innerText = '';
   const div = document.createElement("div");
-  div.classList.add("product");
-  div.innerHTML = `<div class="single-product">
-    <div>
-  <img class="product-image" src=${data.image}></img>
-    </div>
-    <h3 class="product-title">${data.title}</h3>
+  div.classList.add("productDetails");
+  div.innerHTML = `<div class="single-product-details">
+    <img class="product-image" src=${data.image}>
+    <h3>${data.title}</h3>
     <p class="common-para">Category: ${data.category}</p>
     <p class="common-para">Rate: ${data.rating.rate}</p>
     <p class="common-para">Count: ${data.rating.count}</p>
-    <h2>Price: $ ${data.price}</h2>
+    <h4>Price: $ ${data.price}</h4>
     <button onclick="addToCart(${data.id},${data.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
     `;
     singleContainer.appendChild(div);

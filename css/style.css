@@ -65,6 +65,17 @@ body {
   height: 150px;
   padding: 10px 0;
 }
+.productDetails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+}
+.single-product-details {
+  text-align: center;
+}
 .cart {
   width: 350px;
   /* border: 1px solid green; */
